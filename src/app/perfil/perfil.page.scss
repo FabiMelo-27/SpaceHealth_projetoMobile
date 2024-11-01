@@ -1,0 +1,284 @@
+ion-header{
+  --background:transparent;
+
+  ion-toolbar{
+    --background:transparent;
+    background: var(--ion-color-bg);
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+
+
+    ion-title{
+      padding: 10px;
+      text-align: center;
+
+      img{
+        width: 60px;
+      }
+
+    }
+  }
+}
+
+ion-content {
+  --background:transparent;
+  padding: 16px;
+  background-image: url('../../assets/img/backgroundLight.png');
+
+.perfil-content{
+  padding: 10px 10px 0 10px;
+
+  h2 {
+    color: #333;
+    margin: 20px 0;
+    font-size: 1.8em;
+    text-align: center;
+
+  }
+}
+
+
+}
+
+
+h3 {
+  color: #444;
+  margin: 16px;
+  font-size: 1.2em;
+  border-bottom: 1px solid #E4E4E4; // Linha separadora
+  padding-bottom: 8px;
+}
+
+ion-card {
+  margin-bottom: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+ion-card-header {
+  background-color: #E9ECEF; // Cor de fundo do cabeçalho do cartão
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+ion-card-title {
+  font-weight: bold;
+  color: var(--ion-color-secondary);
+  --padding:5px;
+  font-size: 16px;
+}
+
+ion-card-content {
+  --background:transparent;
+  background: var(--ion-color-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  color: #555;
+
+  p{
+    font-size: 1.2em;
+    padding-top: 10px;
+  }
+
+  ion-button{
+    --background:transparent;
+    --border:none;
+    --box-shadow:none;
+
+    ion-icon{
+      color: var(--ion-color-delete);
+    }
+  }
+}
+
+#editar-dados{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 16px;
+  padding-top: 20px;
+
+  ion-button{
+    color: #E4E4E4;
+    font-weight: 600;
+
+  }
+
+  ion-button:hover{
+    --background:transparent;
+    background: var(--ion-color-warning);
+    border-radius: 5px;
+  }
+}
+
+#newDados{
+
+
+  h2{
+    font-size: 16px;
+    color: var(--ion-color-success);
+    text-align: center;
+  }
+
+
+ion-item {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --background:var(--ion-colo-light);
+  margin-bottom: 12px;
+  color: var(--ion-color-secondary);
+
+  ion-label{
+  font-size: 14px;
+    width: 30%;
+    margin-bottom: 10px;
+
+    width: 50%;
+  }
+
+  ion-input{
+    margin-left: 16px;
+    font-size: 16px;
+
+    width: 70%;
+  }
+
+}
+
+.contato-emergencia{
+  h4{
+    color: var(--ion-color-secondary);
+    font-size: 16px;
+    padding: auto auto 0 16px;
+    margin: 20px auto 0 16px;
+  }
+}
+
+ion-button {
+  margin-top: 8px;
+}
+}
+
+#editForm{
+  background: var(--ion-color-white-rgba);
+}
+// .select-options{
+
+//   display: flex;
+//   gap: 16px;
+
+//   h3{
+//     --font-size:14px;
+//     width: 15%;
+//     margin-top: 20px;
+//   }
+
+
+//   ion-select, ion-input{
+//     width: 70%;
+//     --placeholder-color:#444;
+//   }
+
+
+//   ion-button{
+//     --background:transparent;
+//     --border:none;
+//     --box-shadow:none;
+//     gap: 16px;
+//     --text-transform:none;
+//     color: var(--ion-color-light);
+
+//     ion-icon{
+//       font-size: 30px;
+//       text-align: center;
+//       color: #333;
+//     }
+
+//   }
+
+//   ion-button:hover{
+//     --background:transparent;
+//     background: var(--ion-color-warning);
+//     border-radius: 5px;
+//   }
+// }
+
+
+
+ion-button[color="danger"] {
+  background-color: #dc3545; // Cor de fundo para botões de remover
+  color: white;
+}
+
+ion-select {
+  margin-top: 8px;
+}
+
+input {
+  border: 1px solid #CED4DA; // Borda dos campos de entrada
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 1em;
+}
+
+input:focus {
+  border-color: #007BFF; // Cor da borda ao focar
+  outline: none; // Remove o contorno padrão
+}
+
+.btns-funcao{
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  ion-button{
+    text-transform: none;
+    width: 150px;
+    color: var(--ion-color-light);
+  }
+
+  #salvar:hover{
+    --background: var(--ion-color-edit);
+  }
+
+  #delete:hover{
+    --background: var(--ion-color-danger);
+  }
+}
+
+ion-footer{
+  background: var(--ion-color-bg);
+
+
+  ion-toolbar{
+    --background:transparent;
+    background: var(--ion-color-bg);
+    border-bottom-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+
+
+    .links-footer{
+
+      display: flex;
+    justify-content: space-around;
+    align-items: center;
+    }
+
+    a{
+      color: var(--ion-color-light);
+      font-size: 30px;
+    }
+  }
+}
+
+
+#msgNoDados{
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

@@ -1,0 +1,165 @@
+/* Estilos gerais */
+ion-header {
+  height: 80px;
+  background-color: var(--ion-color-bg);
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+
+  ion-toolbar {
+    --background: transparent;
+    box-shadow: none;
+    border: none;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    h4 {
+      font-size: 24px;
+      font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    }
+  }
+}
+
+#logo {
+  display: flex;
+  justify-content: space-around;
+  align-items: end;
+  padding: 10px;
+  // width: 20%;
+
+  img {
+    width: 50px;
+    height: auto;
+  }
+}
+
+ion-title {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+ion-content {
+  --background:transparent;
+  background:url('../../assets/img/backgroundLight.png'); /* Cinza claro */
+  padding: 16px;
+  margin-top: 16px;
+}
+
+#textInfo{
+  padding: 16px;
+  font-size: 16px;
+  text-align: center;
+  color: var(--ion-color-brow);
+}
+
+/* Estilizando os itens de formulário */
+ion-item {
+  margin-bottom: 16px; /* Espaço entre os itens */
+  --background:var(--ion-color-dark-tint);
+  border-radius: 8px; /* Bordas arredondadas */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra leve */
+}
+
+ion-input{
+  margin-left: 16px;
+  width: 50%;
+}
+
+ion-select{
+  width: 50px;
+}
+
+
+
+/* Estilizando os botões */
+ion-button {
+  background-color: #4a90e2; /* Azul suave */
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #357ab8; /* Azul mais escuro */
+  }
+}
+
+/* Estilizando o ion-segment */
+ion-segment {
+  margin: 16px auto;
+
+  ion-segment-button{
+    color: var(--ion-color-secondary);
+  }
+
+}
+
+
+
+
+
+/* Estilizando as listas */
+ion-list {
+  margin-top: 16px; /* Espaço acima da lista */
+  border-radius: 8px;
+  --background: transparent;
+  background-color: #F8F5F0;
+  --box-shadow:none;
+
+  ion-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    --background:transparent;
+    background-color: var(--ion-color-cinza-claro);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    ion-label{
+    h2{
+      color: var(--ion-color-success);
+    }
+  }
+
+  }
+}
+
+
+
+ion-button[slot="end"] {
+  --background:transparent;
+  background: #e74c3c; /* Vermelho para excluir */
+  border-radius: 8px;
+}
+
+ion-button[slot="end"]:hover {
+  background: #c0392b; /* Vermelho mais escuro ao passar o mouse */
+}
+
+
+
+ion-footer{
+  background: var(--ion-color-bg);
+
+
+  ion-toolbar{
+    --background:transparent;
+    background: var(--ion-color-bg);
+    border-bottom-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+
+
+    .links-footer{
+
+      display: flex;
+    justify-content: space-around;
+    align-items: center;
+    }
+
+    a{
+      color: var(--ion-color-light);
+      font-size: 30px;
+    }
+  }
+}

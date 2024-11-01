@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <div id="logo">
+      <h4>Bem-estar</h4>
+      <img src="../../assets/img/icon-ball.png" alt="">
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<!-- conteudoi da página -->
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Calculadora de IMC</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Peso (kg)</ion-label>
+        <ion-input type="number" [(ngModel)]="peso"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Altura (cm)</ion-label>
+        <ion-input type="number" [(ngModel)]="altura"></ion-input>
+      </ion-item>
+      <ion-button expand="full" (click)="calcularIMC()">Calcular IMC</ion-button>
+      <p *ngIf="imc">Seu IMC: {{ imc.toFixed(2) }} ({{ getImcClassification() }})</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Cálculo de Calorias Queimadas</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Descreva o exercício realizado:</p>
+      <ion-input placeholder="Ex: 30 minutos de corrida" [(ngModel)]="exercicio"></ion-input>
+      <ion-button expand="full" (click)="calcularExercicio()">Calcular Calorias Queimadas</ion-button>
+      <p *ngIf="caloriasQueimadas">Calorias queimadas: {{ caloriasQueimadas }}</p>
+      <p *ngIf="exercicioData">Duração: {{ exercicioData.duration_min }} minutos</p>
+      <p *ngIf="exercicioData">MET: {{ exercicioData.met }}</p>
+      <p *ngIf="exercicioData">Nome: {{ exercicioData.name }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Buscar Medicamento</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label id="buscaMed" position="floating">Nome do Medicamento</ion-label>
+        <ion-input type="text" [(ngModel)]="nomeMedicamento"></ion-input>
+      </ion-item>
+      <ion-button expand="full" (click)="buscarMedicamentos(nomeMedicamento)">Buscar</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <div class="links-footer">
+      <a routerLink="/login"><ion-icon name="arrow-undo"></ion-icon></a>
+      <a routerLink="/dashboard"><ion-icon name="home"></ion-icon></a>
+      <a routerLink="/sobre"><ion-icon name="information-circle"></ion-icon></a>
+    </div>
+  </ion-toolbar>
+</ion-footer>

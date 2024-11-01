@@ -1,0 +1,29 @@
+<ion-content>
+  <!-- <div class="logo">
+
+  </div> -->
+
+
+  <div class="form-login">
+
+    <img id="logo" src="../../assets/img/logo.png" alt="">
+
+    <form>
+
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input [(ngModel)]="email" name="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Senha</ion-label>
+        <ion-input [(ngModel)]="password" type="password" name="password"></ion-input>
+      </ion-item>
+
+      <div class="btns">
+        <ion-button (click)="login()">Entrar</ion-button>
+
+        <ion-button (click)="googleLogin()"> <span><img src="../../assets/img/google.png" alt=""></span>Login with Google</ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>

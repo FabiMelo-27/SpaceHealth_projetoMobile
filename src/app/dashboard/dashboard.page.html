@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <img src="../../assets/img/icon-ball.png" alt="">
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="welcome-message">
+    <h2 style="color: black;">Olá, seja bemvindo!</h2>
+    <p style="color: black;">Este é o seu espaço para gerenciar sua saúde.</p>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6">
+        <ion-card (click)="navegarParaPerfil()">
+          <div class="img-card">
+            <img src="../../assets/img/perfil.png" alt="">
+          </div>
+          <ion-card-header>
+            <ion-card-title>Perfil</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Veja suas informações de saúde.
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6" style>
+        <ion-card routerLink="/medicamentos">
+          <div class="img-card">
+          <img src="../../assets/img/medicamento.png" alt="">
+        </div>
+          <ion-card-header>
+            <ion-card-title>Medicamentos</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Gerencie seus medicamentos aqui.
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+    <ion-row>
+      <ion-col size="6">
+        <ion-card routerLink="/sintomas-diarios">
+          <ion-card-header>
+            <div class="img-card">
+              <img src="../../assets/img/sintoma.png" alt="">
+            </div>
+            <ion-card-title>Sintomas</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Registre seus sintomas diários.
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card routerLink="/bem-estar">
+          <div class="img-card">
+            <img src="../../assets/img/bem-estar.png" alt="">
+          </div>
+          <ion-card-header>
+            <ion-card-title>Bem-estar</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Dicas e ferramentas para sua saúde.
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="sair()"><ion-icon name="arrow-undo"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/sobre"><ion-icon name="information-circle"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

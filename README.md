@@ -6,7 +6,7 @@ O **SmartHealth Systems** é uma solução inovadora desenvolvida para ajudar os
 Este projeto é uma iniciativa acadêmica, simulando a atuação de uma empresa fictícia especializada em soluções tecnológicas para a área da saúde.
 
 <div style="text-align: center;">
-  <img src="src/assets/gifs/tudo.gif" alt="Tela Inicial" width="150px">
+  <img src="gifs/tudo.gif" alt="Tela Inicial" width="150px">
 </div>
 
 ---

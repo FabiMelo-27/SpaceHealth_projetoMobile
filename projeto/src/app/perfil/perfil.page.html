@@ -1,0 +1,224 @@
+<ion-header>
+  <ion-toolbar>
+    <div id="logo">
+      <h4>Dados do Perfil</h4>
+      <img src="../../assets/img/icon-ball.png" alt="">
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="perfil-content">
+    <!-- <h2>Dados do Perfil</h2> -->
+    <div *ngIf="!isEditing">
+
+      <ion-card *ngFor="let item of perfil">
+        <ion-card-header>
+          <ion-card-title>Nome</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>{{item.data.nome|| 'Sem dados'}}</p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card *ngFor="let item of perfil">
+        <ion-card-header>
+          <ion-card-title>Telefone</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>{{item.data.telefone || 'Sem dados'}}</p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card *ngFor="let item of perfil">
+        <ion-card-header>
+          <ion-card-title>Data de Nascimento</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>{{item.data.dataNascimento || 'Sem dados'}}</p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card *ngFor="let item of perfil">
+        <ion-card-header>
+          <ion-card-title>Email</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>{{item.data.email || 'Sem dados'}}</p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card *ngFor="let item of perfil">
+        <ion-card-header>
+          <ion-card-title>Plano de Saúde</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>{{item.data.planoSaude || 'Sem dados'}}</p>
+          <p>{{item.data.tipoPlano || 'Sem dados'}}</p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card *ngFor="let item of perfil">
+        <ion-card-header>
+          <ion-card-title>Patologias</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>{{item.data.novaPatologia || 'Sem dados'}}</p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card *ngFor="let item of perfil">
+        <ion-card-header>
+          <ion-card-title>Medicamento</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>{{item.data.novoMedicamento || 'Sem dados'}}</p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card *ngFor="let item of perfil">
+        <ion-card-header>
+          <ion-card-title>Alergias</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>{{item.data.alergias || 'Sem dados'}}</p>
+        </ion-card-content>
+      </ion-card>
+
+
+      <ion-card *ngFor="let item of perfil">
+        <ion-card-header>
+          <ion-card-title>Outros Dados</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>{{item.data.outrosDados || 'Sem dados'}}</p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card *ngFor="let item of perfil">
+        <ion-card-header>
+          <ion-card-title>Contatos de Emergência</ion-card-title>
+        </ion-card-header>
+        <ion-card-content class="contatosEmergencia">
+          <p>{{item.data.contatoNome || 'Sem dados'}}</p>
+          <p>{{item.data.contatoTelefone || 'Sem dados'}}</p>
+          <p>{{item.data.contatoParentesco || 'Sem dados'}}</p>
+        </ion-card-content>
+      </ion-card>
+
+
+      <!-- alterações para perfil com id -->
+      <div id="editar-dados">
+        <ion-button (click)="selecionarPerfil(perfilItem.id, perfilItem.data); isEditing = true"
+          *ngFor="let perfilItem of perfil">
+          Editar Dados
+        </ion-button>
+
+        <ion-button (click)="excluirPerfil(perfilItem.id); isEditing = true" *ngFor="let perfilItem of perfil">
+          Excluir Dados
+        </ion-button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Formulário de Edição -->
+  <div id="newDados" *ngIf="isEditing">
+    <!-- <h2>Alterar Dados do Perfil</h2> -->
+
+    <ion-item>
+      <ion-label position="floating">Nome</ion-label>
+      <ion-input [(ngModel)]="nome" placeholder="Digite seu nome"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Telefone</ion-label>
+      <ion-input [(ngModel)]="telefone" type="tel" placeholder="(XX) XXXXX-XXXX"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Data de Nascimento</ion-label>
+      <ion-input [(ngModel)]="dataNascimento" type="date"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input [(ngModel)]="email" type="email" placeholder="Digite seu email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Plano de Saúde</ion-label>
+      <ion-input [(ngModel)]="planoSaude" placeholder="Nome do plano"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Tipo de Plano</ion-label>
+      <ion-input [(ngModel)]="tipoPlano" placeholder="Tipo do plano"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Patologias</ion-label>
+      <ion-input [(ngModel)]="novaPatologia" placeholder="Digite suas patologias"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Medicamentos</ion-label>
+      <ion-input [(ngModel)]="novoMedicamento" placeholder="Digite seus medicamentos"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Alergias</ion-label>
+      <ion-input [(ngModel)]="alergias" placeholder="Digite suas alergias"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Outros Dados</ion-label>
+      <ion-input [(ngModel)]="outrosDados" placeholder="Outros dados relevantes"></ion-input>
+    </ion-item>
+
+    <div class="contato-emergencia">
+      <h4>Contato de Emergência</h4>
+      <ion-item>
+        <ion-label position="floating">Nome do Contato</ion-label>
+        <ion-input [(ngModel)]="contatoNome" placeholder="Nome do contato"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Telefone do Contato</ion-label>
+        <ion-input [(ngModel)]="contatoTelefone" type="tel" placeholder="(XX) XXXXX-XXXX"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Parentesco</ion-label>
+        <ion-input [(ngModel)]="contatoParentesco" placeholder="Grau de parentesco"></ion-input>
+      </ion-item>
+
+
+    </div>
+
+    <div class="btns-funcao">
+      <ion-button (click)="salvarPerfil()">Salvar </ion-button>
+      <ion-button (click)="isEditing = false">Cancelar</ion-button>
+    </div>
+  </div>
+
+  <div id="msgNoDados">
+    <ng-container *ngIf="perfil.length === 0 && !isEditing">
+      <p style="color: black;">Você ainda não adicionou dados ao perfil.</p>
+
+      <ion-button (click)="isEditing = true">Adicionar Dados</ion-button>
+
+    </ng-container>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <div class="links-footer">
+      <a routerLink="/dashboard"><ion-icon name="arrow-undo-outline"></ion-icon></a>
+      <a routerLink="/sobre"><ion-icon name="information-circle"></ion-icon></a>
+      <a routerLink="/login"><ion-icon name="power-outline"></ion-icon></a>
+    </div>
+  </ion-toolbar>
+</ion-footer>

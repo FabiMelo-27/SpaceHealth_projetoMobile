@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar>
+    <div id="logo">
+      <h4>Bem-estar</h4>
+      <img src="../../assets/img/icon-ball.png" alt="">
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<!-- conteudo da página -->
+<ion-content>
+  <!-- msg motivacional e dicas -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title><ion-icon name="chatbox-ellipses-outline"></ion-icon> Mensagem do Dia</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+          <p class="msg"> {{ mensagemMotivacional }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title> <ion-icon name="heart-outline"></ion-icon> Dica de Saúde</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p class="msg dica"> {{ dicaSaude }}</p>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title> <ion-icon name="calculator-outline"></ion-icon> Calculadora de IMC</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Peso (kg)</ion-label>
+        <ion-input type="number" [(ngModel)]="peso"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Altura (cm)</ion-label>
+        <ion-input type="number" [(ngModel)]="altura"></ion-input>
+      </ion-item>
+      <ion-button expand="full" (click)="calcularIMC()">Calcular IMC</ion-button>
+      <p *ngIf="imc">Seu IMC: {{ imc.toFixed(2) }} ({{ getImcClassification() }})</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title> <ion-icon name="bicycle-outline"></ion-icon> Cálculo de Calorias Queimadas</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Descreva o exercício realizado:</p>
+      <ion-input id="exercicio" placeholder="Ex: 30 minutos de corrida" [(ngModel)]="exercicio" ></ion-input>
+      <ion-button expand="full" (click)="calcularExercicio()">Calcular Calorias Queimadas</ion-button>
+      <p *ngIf="caloriasQueimadas">Calorias queimadas: {{ caloriasQueimadas }}</p>
+      <p *ngIf="exercicioData">Duração: {{ exercicioData.duration_min }} minutos</p>
+      <p *ngIf="exercicioData">MET: {{ exercicioData.met }}</p>
+      <p *ngIf="exercicioData">Nome: {{ exercicioData.name }}</p>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <div class="links-footer">
+      <a routerLink="/dashboard"><ion-icon name="arrow-undo-outline"></ion-icon></a>
+      <a routerLink="/sobre"><ion-icon name="information-circle"></ion-icon></a>
+      <a routerLink="/login"><ion-icon name="power-outline"></ion-icon></a>
+    </div>
+  </ion-toolbar>
+</ion-footer>

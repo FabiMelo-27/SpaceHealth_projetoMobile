@@ -1,0 +1,126 @@
+ion-header {
+  height: 100px;
+  background-color: var(--ion-color-secondary);
+
+  ion-toolbar {
+    --background: transparent;
+    box-shadow: none;
+    border: none;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    h4 {
+      font-size: 16px;
+      font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    }
+  }
+}
+
+#logo {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding: 10px;
+
+  img {
+    width: 35px;
+    height: auto;
+  }
+}
+
+ion-content {
+  --background: transparent;
+  background: url("../../assets/img/bg_heart.png");
+  background-position: center;
+  background-size: cover;
+}
+
+ion-input {
+  --placeholder-color: black;
+}
+
+ion-card {
+  margin: 1rem auto;
+  width: 90%;
+  --background: var(--ion-color-white-rgba);
+  border-radius: 5px;
+  box-shadow: var(--shadow);
+
+  ion-card-content {
+    ion-item {
+      --background: var(--ion-color-white-rgba);
+    }
+
+    ion-label {
+      --background: var(--ion-color-dark);
+      margin-bottom: 20px;
+      width: 40%;
+      color: var(--ion-color-brow);
+    }
+
+    ion-input {
+      width: 50%;
+      color: var(--ion-color-brow);
+    }
+  }
+
+  #exercicio {
+    width: 100%;
+  }
+
+  .msg {
+    font-size: 16px;
+    text-align: center;
+    font-weight: 500;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+      "Lucida Sans", Arial, sans-serif;
+    color: #6a0dad;
+  }
+
+  .dica {
+    color: #ffa07a;
+  }
+}
+
+ion-card-title {
+  color: var(--ion-color-edit);
+  font-weight: 600;
+  font-size: 16px;
+}
+
+p {
+  color: var(--ion-color-brown);
+  font-size: 14px;
+}
+
+#buscaMed {
+  width: 100%;
+}
+
+ion-button {
+  color: var(--ion-color-light);
+  font-weight: 700;
+}
+
+ion-footer {
+  background: var(--ion-color-secondary);
+
+  ion-toolbar {
+    --background: transparent;
+    background: var(--ion-color-secondary);
+
+    .links-footer {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    a {
+      color: var(--ion-color-light);
+      font-size: 30px;
+    }
+  }
+}

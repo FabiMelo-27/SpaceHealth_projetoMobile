@@ -1,0 +1,7 @@
+{
+  "name": "SpaceHealth",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

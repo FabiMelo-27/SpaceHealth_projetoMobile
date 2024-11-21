@@ -1,0 +1,122 @@
+ion-toolbar {
+  --background: transparent;
+  background: var(--ion-color-bg);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding-right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+
+  a {
+    color: var(--ion-color-secondary);
+    text-decoration: none;
+    text-align: right;
+  }
+}
+
+ion-content {
+  --background: transparent;
+  background: var(--ion-color-secondary);
+  background-size: cover;
+
+}
+
+
+img#logo {
+  width: 120px;
+}
+
+.newuser{
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 16px;
+
+  h2{
+    font-size: 14px;
+
+    span{
+      margin-right: 10px;
+
+      ion-icon{
+        font-weight: 700;
+        color: var(--ion-color-success);
+        font-size: 20px;
+      }
+    }
+
+  }
+}
+
+.form-login {
+  margin-top: -20px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  // background-color: green;
+
+  form {
+    padding:0px 16px 16px  16px;
+    width: 85%;
+    border-radius: 10px;
+    margin-top: 0.5rem;
+
+    ion-item {
+      --background: transparent;
+      margin: 16px auto 16px auto;
+      --border: none;
+     border-radius: 10pxFF;
+      background-color: rgba(29, 53, 89, 1);
+    }
+
+    ion-input {
+      --background: transparent;
+      font-size: 16px;
+      color: var(--ion-color-primary);
+      padding-bottom: 5px;
+    }
+
+    ion-input:focus {
+      --border-bottom: 2px solid var(--ion-color-primary);
+    }
+
+    ion-label {
+      color: var(--ion-color-light);
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .btns {
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    ion-button {
+      --background: var(--ion-color-bg);
+      color: var(--ion-color-light);
+      width: 300px;
+      --height: 40px;
+      --border-radius: 5px;
+      margin-bottom: 1.5rem;
+      text-transform: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    ion-button:hover {
+      --background: var(--ion-color-success);
+    }
+    span {
+      width: 20px;
+      margin-right: 10px;
+    }
+  }
+}

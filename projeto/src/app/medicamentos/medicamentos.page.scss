@@ -1,0 +1,163 @@
+body {
+  --backgroubd: transparent;
+}
+
+//header
+ion-header {
+  background-color: var(--ion-color-secondary);
+
+  ion-toolbar {
+    --background: transparent;
+
+    h4 {
+      font-size: 16px;
+      font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    }
+  }
+}
+
+#logo {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding: 10px;
+
+  img {
+    width: 35px;
+    height: auto;
+  }
+}
+
+// conteúdo
+#container-login {
+  height: 100vh;
+  background-image: url("../../assets/img/bg_heart.png");
+  --background: transparent;
+  background-position: center;
+  background-size: cover;
+}
+
+// Estilo dos itens de entrada
+#toDo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  background: var(--ion-color-dark);
+  border-top: 2px solid var(--ion-color-icon);
+  margin-top: 10px;
+
+  ion-item {
+    --border-color: transparent;
+    --background: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    ion-label {
+      margin-right: 10px;
+      flex: 1;
+      text-align: right;
+      font-size: 12px;
+    }
+
+    ion-input {
+      --color: var(--ion-color-cinza);
+      flex: 2;
+      border-bottom: 1px solid var(--ion-color-light);
+      text-align: left;
+
+      height: 20px;
+      margin-left: 15px;
+    }
+    ion-checkbox {
+      flex: 2;
+      margin-left: 10px;
+    }
+  }
+
+  /* Botões */
+  ion-button {
+    --backgraund: transparent;
+    margin-top: 16px;
+    color: white;
+    font-weight: bold;
+    width: 100%;
+
+  }
+}
+
+// Estilo da lista de medicamentos
+ion-list {
+  --background: transparent !important;
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  gap: 10px;
+  background-color: rgba(248, 245, 240, 0.8);
+
+  .list {
+    --border-color: transparent;
+    --background: transparent;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+
+    .label-list {
+      h2 {
+        font-size: 16px;
+        color: var(--ion-color-success);
+        font-weight: 600;
+        margin-bottom: 10px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+
+      p {
+        color: #555;
+        font-size: 14px;
+        line-height: 1.2;
+        margin: 4px 0;
+
+        span {
+          font-weight: 600;
+        }
+      }
+    }
+
+    .btnList {
+      #btn-edit {
+        color: var(--ion-color-edit);
+      }
+
+      #btn-delet {
+        color: var(--ion-color-danger);
+      }
+
+      ion-icon {
+        font-size: 24px;
+      }
+    }
+  }
+}
+
+ion-footer {
+
+  ion-toolbar {
+    --background: transparent;
+    background: var(--ion-color-secondary);
+
+    .links-footer {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    a {
+      color: var(--ion-color-light);
+      font-size: 30px;
+    }
+  }
+}

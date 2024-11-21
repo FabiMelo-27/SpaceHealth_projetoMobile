@@ -1,0 +1,78 @@
+ion-header {
+  --background: transparent;
+  height: 80px;
+
+  ion-toolbar {
+    --background: transparent;
+    background: var(--ion-color-secondary);
+    height: 80px;
+
+    ion-title {
+      padding: 10px;
+      text-align: center;
+
+      img {
+        width: 50px;
+      }
+    }
+  }
+}
+
+ion-content {
+  --background: transparent;
+  background-image: url("../../assets/img/bg_heart.png") ;
+  background-position: center;
+  background-size: cover;
+
+  .welcome-message {
+    padding: 16px;
+
+    h2 {
+      margin-bottom: 1rem;
+    }
+  }
+
+  ion-card {
+    background: var(--ion-color-light);
+    height: 95%;
+
+    .img-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        margin-top: 10px;
+        width: 55px;
+        padding: 5px;
+      }
+    }
+
+    ion-card-title {
+      font-size: 0.8rem;
+      color: var(--ion-color-secondary-tint);
+      font-weight: bold;
+      text-align:left;
+    }
+  }
+}
+
+ion-card-content {
+  padding-bottom: 12px;
+  text-align: left;
+  font-size: 15px;
+}
+
+@media (max-width: 376px) {
+}
+
+ion-footer {
+  ion-toolbar {
+    --background: transparent;
+    background: var(--ion-color-secondary);
+
+    ion-icon {
+      font-size: 30px;
+    }
+  }
+}

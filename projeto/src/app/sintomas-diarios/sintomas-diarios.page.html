@@ -1,0 +1,145 @@
+<ion-header>
+  <ion-toolbar>
+    <div id="logo">
+      <h4>Sintomas Diários</h4>
+      <img src="../../assets/img/icon-ball.png" alt="">
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-segment (ionChange)="onSegmentChange($event)" [value]="formularioTipo">
+    <ion-segment-button value="sintomas">Sintomas</ion-segment-button>
+    <ion-segment-button value="pressao">Presão</ion-segment-button>
+    <ion-segment-button value="diabetes">Diabetes</ion-segment-button>
+  </ion-segment>
+
+  <!-- Formulário para Sintomas -->
+  <div *ngIf="formularioTipo === 'sintomas'">
+
+    <h3 id="textInfo">Registre seus sintomas aqui e apresente ao seu médico na consulta</h3>
+    <ion-item>
+      <ion-label>Sintoma</ion-label>
+      <ion-select [(ngModel)]="sintomaSelecionado" name="sintoma" required>
+        <ion-select-option *ngFor="let sintoma of sintomasComuns" [value]="sintoma">{{ sintoma }}</ion-select-option>
+        <ion-select-option value="outro">Outro</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="sintomaSelecionado === 'outro'">
+      <ion-label position="floating">Descreva o Sintoma</ion-label>
+      <ion-input [(ngModel)]="sintomaPersonalizado" name="sintomaPersonalizado"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Intensidade</ion-label>
+      <ion-select [(ngModel)]="intensidade" name="intensidade" required>
+        <ion-select-option value="baixo">Baixo</ion-select-option>
+        <ion-select-option value="moderado">Moderado</ion-select-option>
+        <ion-select-option value="alto">Alto</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Data do Sintoma</ion-label>
+      <ion-input type="datetime-local" [(ngModel)]="dataSintoma" name="dataSintoma"></ion-input>
+    </ion-item>
+    <ion-button expand="full" (click)="registrarSintomas()">
+      {{ sintomaSelecionadaId ? 'Atualizar' : 'Adicionar' }}
+      <!-- Texto do botão muda conforme se há uma pessoa selecionada -->
+    </ion-button>
+
+
+    <!-- Exibição de sintomas registrados -->
+    <ion-list>
+      <ion-item *ngFor="let sintoma of sintomas; let i = index">
+        <ion-label class="labelList">
+          <h2 class="titleList">{{ sintoma.data.sintoma }}</h2>
+          <p>Intensidade: {{ sintoma.data.intensidade }}</p>
+          <p>Data: {{ sintoma.data.data }}</p>
+        </ion-label>
+        <ion-button slot="end" (click)="excluirSintoma(i)"><ion-icon name="trash"></ion-icon></ion-button>
+      </ion-item>
+
+    </ion-list>
+  </div>
+
+  <!-- Formulário para Pressão -->
+  <div *ngIf="formularioTipo === 'pressao'">
+
+    <h3 id="textInfo">Registre sua pressão arterial regularmente para um melhor controle da saúde.</h3>
+
+    <ion-item>
+      <ion-label>Data</ion-label>
+      <ion-input type="datetime-local" [(ngModel)]="dataPressao" name="dataPressao"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Sistólica</ion-label>
+      <ion-input type="number" [(ngModel)]="pressaoSistolica" name="pressaoSistolica" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Diastólica</ion-label>
+      <ion-input type="number" [(ngModel)]="pressaoDiastolica" name="pressaoDiastolica" required></ion-input>
+    </ion-item>
+    <ion-button expand="full" (click)="registrarPressao()">
+      {{ pressaoSelecionadaId ? 'Atualizar' : 'Adicionar' }}
+      <!-- Texto do botão muda conforme se há uma pessoa selecionada -->
+    </ion-button>
+
+
+    <!-- Exibição de registros de pressão -->
+    <ion-list>
+      <ion-item *ngFor="let registro of registrosPressao; let i = index">
+        <ion-label>
+          <h2 class="titleList">Sistólica: {{ registro.data.pressaoSistolica }} | Diastólica: {{ registro.data.pressaoDiastolica }}</h2>
+          <p>Data: {{ registro.data.data }}</p>
+          <!-- campo incluido dps -->
+          <h3>{{ verificarPressao(registro.data.pressaoSistolica, registro.data.pressaoDiastolica) }}</h3>
+        </ion-label>
+        <ion-button slot="end" (click)="excluirPressao(i)"><ion-icon name="trash"></ion-icon></ion-button>
+      </ion-item>
+    </ion-list>
+
+  </div>
+
+  <!-- Formulário para Diabetes -->
+  <div *ngIf="formularioTipo === 'diabetes'">
+    <h3 id="textInfo">Registre seus níveis de glicose para um acompanhamento eficaz do diabetes.</h3>
+
+    <ion-item>
+      <ion-label>Data</ion-label>
+      <ion-input type="datetime-local" [(ngModel)]="dataDiabetes" name="dataDiabetes"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Nível de Glicose</ion-label>
+      <ion-input type="number" [(ngModel)]="nivelGlicose" name="nivelGlicose" required></ion-input>
+    </ion-item>
+    <ion-button expand="full" (click)="registrarDiabetes()">
+      {{ diabeteSelecionadaId ? 'Atualizar' : 'Adicionar' }}
+      <!-- Texto do botão muda conforme se há uma pessoa selecionada -->
+    </ion-button>
+
+
+    <!-- Exibição de registros de diabetes -->
+    <ion-list>
+      <ion-item *ngFor="let registro of registrosDiabetes; let i = index">
+        <ion-label>
+          <h2 class="titleList">Nível de Glicose: {{ registro.data.nivelGlicose }}</h2>
+          <p>Data: {{ registro.data.data }}</p>
+          <!-- campo incluido dps -->
+          <h3>{{ verificarDiabetes(registro.data.nivelGlicose) }}</h3>
+        </ion-label>
+        <ion-button slot="end" (click)="excluirDiabetes(i)"><ion-icon name="trash"></ion-icon></ion-button>
+      </ion-item>
+    </ion-list>
+
+  </div>
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <div class="links-footer">
+      <a routerLink="/dashboard"><ion-icon name="arrow-undo-outline"></ion-icon></a>
+      <a routerLink="/sobre"><ion-icon name="information-circle"></ion-icon></a>
+      <a routerLink="/login"><ion-icon name="power-outline"></ion-icon></a>
+    </div>
+  </ion-toolbar>
+</ion-footer>

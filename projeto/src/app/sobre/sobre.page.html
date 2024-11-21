@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <div id="cabecalho">
+      <img id="logo-on" src="../../assets/img/logoball3d-white.png" alt="">
+
+    <ion-title>SmartHealth Systems</ion-title>
+
+
+    <a routerLink="/dashboard">
+      <ion-icon name="home"></ion-icon>
+    </a>
+
+  </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h2>Quem somos</h2>
+<p>Somos a SmartHealth Systems, uma empresa fundada por três estudantes apaixonados por tecnologia e saúde. Comprometidos em melhorar a qualidade de vida, criamos soluções inteligentes e acessíveis.
+
+<h2>Space Health</h2>
+<p>Nosso aplicativo foi desenvolvido para tornar o cuidado com a saúde mais simples e acessível. Com uma interface intuitiva, ele oferece recursos para o monitoramento contínuo do bem-estar, incluindo o cálculo de IMC, gasto calórico e controle de sintomas. Além disso, temos uma seção dedicada a mensagens motivacionais e dicas de saúde, para inspirar e incentivar hábitos saudáveis no seu dia a dia. O app também oferece ferramentas para o controle de condições como diabetes e hipertensão, facilitando o acompanhamento e proporcionando um cuidado mais personalizado. Com este aplicativo, cuidar da sua saúde e manter o equilíbrio entre corpo e mente nunca foi tão fácil e eficiente.</p>
+
+
+  <h2>Equipe Técnica</h2>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="11" *ngFor="let membro of membros">
+        <ion-card>
+          <img [src]="membro.foto" alt="{{ membro.nome }}" />
+          <ion-card-header>
+            <ion-card-title>{{ membro.nome }}</ion-card-title>
+            <ion-card-subtitle>Matrícula: {{ membro.matricula }}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <p>{{ membro.resumo }}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

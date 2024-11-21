@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar>
+    <div id="logo">
+      <h4>Medicamentos</h4>
+      <img src="../../assets/img/icon-ball.png" alt="">
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="container-login" padding>
+
+
+  <!-- to do -->
+  <div id="toDo">
+    <ion-item>
+      <ion-label >Nome do Medicamento</ion-label>
+      <ion-input class="styled-input" [(ngModel)]="medication.name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label >Horário Inicial</ion-label>
+      <ion-input type="time" class="styled-input" [(ngModel)]="medication.startTime"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label >Intervalo (Horas)</ion-label>
+      <ion-input type="number" class="styled-input" [(ngModel)]="medication.interval"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label >Data Inicial</ion-label>
+      <ion-input type="date" class="styled-input" [(ngModel)]="medication.startDate"></ion-input>
+    </ion-item>
+
+    <ion-item id="ckeck">
+      <ion-label >Uso Contínuo</ion-label>
+      <ion-checkbox [(ngModel)]="medication.isContinuous" class="custom-checkbox"></ion-checkbox>
+    </ion-item>
+
+    <ion-item *ngIf="!medication.isContinuous">
+      <ion-label >Quantidade de Dias</ion-label>
+      <ion-input type="number" class="styled-input" [(ngModel)]="medication.duration"></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" (click)="addMedication()">Adicionar Medicação</ion-button>
+  </div>
+
+<ion-list>
+  <ion-item class="list" *ngFor="let med of medications; let i = index">
+    <ion-label class="label-list">
+      <h2>{{ med.name }}</h2>
+      <p><span>Início em:</span> {{ med.startDate | date:'dd-MM-yyyy' }} às {{ med.startTime }}</p>
+      <p><span>Horários:</span> {{ getMedicationTimes(med) }}</p>
+      <p>{{ getEndDate(med) }}</p>
+    </ion-label>
+
+<div class="btnList">
+    <ion-button id="btn-edit" fill="clear" slot="end" (click)="editMedication(i)">
+      <ion-icon name="create"></ion-icon>
+    </ion-button>
+    <ion-button id="btn-delet" fill="clear" slot="end" (click)="removeMedication(i)">
+      <ion-icon name="trash"></ion-icon>
+    </ion-button>
+  </div>
+
+  </ion-item>
+</ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <div class="links-footer">
+      <a routerLink="/dashboard"><ion-icon name="arrow-undo-outline"></ion-icon></a>
+      <a routerLink="/sobre"><ion-icon name="information-circle"></ion-icon></a>
+      <a routerLink="/login"><ion-icon name="power-outline"></ion-icon></a>
+    </div>
+  </ion-toolbar>
+</ion-footer>
+
+
+
+
+
+
+
+
+

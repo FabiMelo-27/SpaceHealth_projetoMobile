@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title><img src="../../assets/img/logoBall3d.png" alt=""></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<h2>Crie sua conta de forma rápida!!</h2>
+
+<div class="login">
+
+  <a routerLink="/login"><span>Já possui conta? </span>  Faça seu Login</a>
+</div>
+
+  <form (ngSubmit)="signUp()">
+    <ion-item>
+      <ion-label position="floating">E-mail</ion-label>
+      <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Senha</ion-label>
+      <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Confirmar Senha</ion-label>
+      <ion-input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" required></ion-input>
+    </ion-item>
+
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <ion-button  type="submit" [disabled]="!email || !password || !confirmPassword">Cadastrar</ion-button>
+  </form>
+
+
+
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <div class="links-footer">
+      <a routerLink="/login"><ion-icon name="arrow-undo"></ion-icon></a>
+      
+      <a routerLink="/sobre"><ion-icon name="information-circle"></ion-icon></a>
+    </div>
+  </ion-toolbar>
+</ion-footer>
+

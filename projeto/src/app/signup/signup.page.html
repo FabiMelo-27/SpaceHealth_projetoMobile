@@ -13,17 +13,17 @@
 </div>
 
   <form (ngSubmit)="signUp()">
-    <ion-item>
+    <ion-item style="width: 80%;">
       <ion-label position="floating">E-mail</ion-label>
       <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
     </ion-item>
 
-    <ion-item>
+    <ion-item style="width: 80%;">
       <ion-label position="floating">Senha</ion-label>
       <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
     </ion-item>
 
-    <ion-item>
+    <ion-item style="width: 80%;">
       <ion-label position="floating">Confirmar Senha</ion-label>
       <ion-input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" required></ion-input>
     </ion-item>

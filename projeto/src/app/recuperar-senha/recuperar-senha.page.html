@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <img src="../../assets/img/icon-ball.png" alt="">
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <h2>Informe seu e-mail para receber um link de redefinição de senha.</h2>
+  <ion-item>
+    <ion-label position="floating">Email</ion-label>
+    <ion-input [(ngModel)]="email" type="email" placeholder="Digite seu e-mail"></ion-input>
+  </ion-item>
+
+<div class="btn">
+  <ion-button  (click)="enviarLinkRecuperacao()">Enviar Link</ion-button>
+</div>
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons >
+      <ion-button routerLink="/login"><ion-icon name="arrow-undo-outline"></ion-icon></ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-footer>

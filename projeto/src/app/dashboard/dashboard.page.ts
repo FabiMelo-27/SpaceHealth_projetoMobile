@@ -20,4 +20,8 @@ export class DashboardPage {
     // Redirecionar para a página de login ou inicial
     this.router.navigate(['/login']);
   }
+
+  
+  
 }
+

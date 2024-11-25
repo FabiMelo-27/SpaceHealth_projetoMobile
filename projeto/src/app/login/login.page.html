@@ -1,5 +1,5 @@
 <ion-content>
-   <div class="form-login">
+  <div class="form-login">
     <img id="logo" src="../../assets/img/logo.png" alt="">
 
     <div class="newuser" (click)="goToSignUp()">
@@ -16,10 +16,24 @@
         <ion-input [(ngModel)]="password" type="password" name="password"></ion-input>
       </ion-item>
 
+      <!-- Checkbox para lembrar login -->
+
+      <div id="manterLogin">
+
+        <ion-checkbox name="lembrarLogin">
+          Lembrar login
+        </ion-checkbox>
+
+        <a routerLink="/recuperar-senha"><ion-icon name="help-circle-outline"></ion-icon>Esqueci minha senha.</a>
+      </div>
+
+
+
       <div class="btns">
         <ion-button (click)="login()" style="height: 45px;">Entrar</ion-button>
 
-        <ion-button (click)="googleLogin()"> <span><img src="../../assets/img/google.png" alt=""></span>Login with Google</ion-button>
+        <ion-button (click)="googleLogin()"> <span><img src="../../assets/img/google.png" alt=""></span>Login with
+          Google</ion-button>
       </div>
     </form>
   </div>

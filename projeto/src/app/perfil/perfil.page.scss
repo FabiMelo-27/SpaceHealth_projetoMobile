@@ -105,6 +105,10 @@ ion-card-content {
     color: #e4e4e4;
     font-weight: 600;
     text-transform: none;
+
+    ion-icon{
+      margin-right: 8px;
+    }
   }
 
 
@@ -159,7 +163,7 @@ color: var(--ion-color-brow);
   background: var(--ion-color-white-rgba);
 }
 
-.contatosEmergencia {
+.contatosEmergencia, .planoSaude {
   justify-content: space-between;
 }
 
@@ -167,6 +171,8 @@ color: var(--ion-color-brow);
 
 ion-select {
   margin-top: 8px;
+
+
 }
 
 input {

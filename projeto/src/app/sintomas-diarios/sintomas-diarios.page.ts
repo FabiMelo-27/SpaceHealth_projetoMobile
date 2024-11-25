@@ -3,8 +3,11 @@ import { SintomasService } from '../services/sintomas.service';
 import { Sintoma } from './../models/sintoma';
 import { RegistroPressao } from './../models/registro-pressao';
 import { RegistroDiabetes } from './../models/registro-diabetes';
-import { AngularFireAuth } from '@angular/fire/compat/auth'; 
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Observable } from 'rxjs';
+import { jsPDF } from 'jspdf';
+import { Filesystem, Directory } from '@capacitor/filesystem';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-sintomas-diarios',
@@ -43,7 +46,8 @@ export class SintomasDiariosPage implements OnInit {
 
   constructor(
     private sintomasService: SintomasService,
-    private afAuth: AngularFireAuth  // Injeção do serviço de autenticação Firebase
+    private afAuth: AngularFireAuth,      // Injeção do serviço de autenticação Firebase
+    private platform: Platform,
   ) {}
 
   // Função para verificar a situação da pressão arterial
@@ -133,8 +137,8 @@ export class SintomasDiariosPage implements OnInit {
   }
 
   registrarPressao() {
-    if (this.dataPressao && this.pressaoDiastolica !== null && this.pressaoSistolica !== null && this.userId) {
-      const registroPressao = new RegistroPressao(this.dataPressao, this.pressaoDiastolica, this.pressaoSistolica);
+    if (this.dataPressao && this.pressaoSistolica !== null && this.pressaoDiastolica !== null && this.userId) {
+      const registroPressao = new RegistroPressao(this.dataPressao, this.pressaoSistolica, this.pressaoDiastolica);
       if (this.pressaoSelecionadaId) {
         this.sintomasService.updateRegistroPressao(this.pressaoSelecionadaId, registroPressao, this.userId).then(() => {
           console.log('Pressão atualizada com sucesso!');
@@ -204,4 +208,139 @@ export class SintomasDiariosPage implements OnInit {
   onSegmentChange(event: any) {
     this.formularioTipo = event.detail.value; // Atualiza o tipo de formulário baseado na seleção
   }
-}
+
+
+     // Função para gerar o PDF
+     gerarPDF() {
+      const doc = new jsPDF();
+
+      // Definir o título do documento
+      doc.setFontSize(14);
+      doc.text('Relatório de Saúde', 20, 20);
+
+      let yOffset = 30;  // Posição inicial para o primeiro conteúdo
+
+      // Adicionando uma linha em branco antes dos títulos
+      doc.text('', 20, yOffset);  // Linha em branco
+      yOffset += 10;
+
+      // Adicionando dados de Sintomas
+      doc.setFontSize(12);
+      doc.text('Sintomas Registrados', 20, yOffset);
+      yOffset += 10; // Pular uma linha antes do conteúdo
+      doc.setFontSize(11);
+
+      if (this.sintomas.length > 0) {
+        this.sintomas.forEach(sintoma => {
+          const sintomaTexto = sintoma.data.sintoma || 'Desconhecido';
+          const intensidadeTexto = sintoma.data.intensidade || 'Desconhecida';
+          const dataTexto = sintoma.data.data || 'Desconhecida';
+
+          doc.text(`Sintoma: ${sintomaTexto}`, 20, yOffset);
+          doc.text(`Intensidade: ${intensidadeTexto}`, 20, yOffset + 10);
+          doc.text(`Data: ${dataTexto}`, 20, yOffset + 20);
+          yOffset += 30;  // Espaço para o próximo sintoma
+
+          // Adicionando uma linha de separação após cada registro de sintoma
+          doc.line(20, yOffset, 180, yOffset);  // Linha de separação
+          yOffset += 10;  // Espaçamento após a linha
+        });
+      } else {
+        doc.text('Nenhum sintoma registrado.', 20, yOffset);
+        yOffset += 10;
+      }
+
+      // Adicionar uma linha em branco entre os grupos de dados
+      doc.text('', 20, yOffset);  // Linha em branco entre grupos
+      yOffset += 10;
+
+      // Adicionando dados de Pressão
+      doc.setFontSize(12);
+      doc.text('Pressão Arterial Registrada', 20, yOffset);
+      yOffset += 10;  // Pular uma linha antes do conteúdo
+      doc.setFontSize(11);
+
+      if (this.registrosPressao.length > 0) {
+        this.registrosPressao.forEach(registro => {
+          const sistolica = registro.data.pressaoSistolica || 'Desconhecida';
+          const diastolica = registro.data.pressaoDiastolica || 'Desconhecida';
+          const data =  registro.data.data || 'Desconhecida';
+
+          doc.text(`Sistólica: ${sistolica}`, 20, yOffset);
+          doc.text(`Diastólica: ${diastolica}`, 20, yOffset + 10);
+          doc.text(`Data: ${data}`, 20, yOffset + 20);
+          yOffset += 30;  // Espaço para o próximo registro de pressão
+
+          // Adicionando uma linha de separação após o registro de pressão
+          doc.line(20, yOffset, 180, yOffset);  // Linha de separação
+          yOffset += 10;  // Espaçamento após a linha
+        });
+      } else {
+        doc.text('Nenhuma pressão registrada.', 20, yOffset);
+        yOffset += 10;
+      }
+
+      // Adicionar uma linha em branco entre os grupos de dados
+      doc.text('', 20, yOffset);  // Linha em branco entre grupos
+      yOffset += 10;
+
+      // Adicionando dados de Diabetes
+      doc.setFontSize(12);
+      doc.text('Níveis de Glicose Registrados (Diabetes)', 20, yOffset);
+      yOffset += 10;  // Pular uma linha antes do conteúdo
+      doc.setFontSize(11);
+
+      if (this.registrosDiabetes.length > 0) {
+        this.registrosDiabetes.forEach(registro => {
+          const nivelGlicose = registro.data.nivelGlicose|| 'Desconhecido';
+          const data = registro.data.data || 'Desconhecida';
+
+          doc.text(`Nível de Glicose: ${nivelGlicose}`, 20, yOffset);
+          doc.text(`Data: ${data}`, 20, yOffset + 10);
+          yOffset += 30;  // Espaço para o próximo registro de diabetes
+
+          // Adicionando uma linha de separação após o registro de diabetes
+          doc.line(20, yOffset, 180, yOffset);  // Linha de separação
+          yOffset += 10;  // Espaçamento após a linha
+        });
+      } else {
+        doc.text('Nenhum registro de glicose encontrado.', 20, yOffset);
+        yOffset += 10;
+      }
+
+      // Gerar e salvar o PDF dependendo da plataforma
+      this.salvarPDF(doc);
+    }
+
+    // Função para salvar o PDF
+    salvarPDF(doc: jsPDF) {
+      if (this.platform.is('android')) {
+        // Salvar PDF no dispositivo Android
+        const pdfBase64 = doc.output('datauristring');
+        Filesystem.writeFile({
+          path: 'relatorio-saude.pdf',
+          data: pdfBase64.split(',')[1], // Remove o prefixo "data:application/pdf;base64,"
+          directory: Directory.Documents
+        }).then(result => {
+          console.log('PDF salvo em Android:', result.uri);
+        }).catch(error => {
+          console.error('Erro ao salvar PDF:', error);
+        });
+      } else {
+        // No navegador, tenta salvar diretamente
+        try {
+          doc.save('relatorio-saude.pdf');
+        } catch (error) {
+          console.error('Erro ao salvar PDF no navegador:', error);
+
+          // Caso o doc.save() falhe, criar um link manual para download
+          const pdfBlob = doc.output('blob');
+          const link = document.createElement('a');
+          link.href = URL.createObjectURL(pdfBlob);
+          link.download = 'relatorio-saude.pdf';
+          link.click();  // Acionar o download
+          URL.revokeObjectURL(link.href);  // Limpar o objeto URL após o download
+        }
+      }
+    }
+  }

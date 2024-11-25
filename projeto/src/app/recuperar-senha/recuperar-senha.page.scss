@@ -1,0 +1,73 @@
+ion-header {
+  --background: transparent;
+  height: 80px;
+
+  ion-toolbar {
+    --background: transparent;
+    background: var(--ion-color-secondary);
+    height: 80px;
+
+    ion-title {
+      padding: 10px;
+      text-align: center;
+
+      img {
+        width: 50px;
+      }
+    }
+  }
+}
+
+
+
+ion-content{
+  --background: url('../../assets/img/bg_heart.png') no-repeat center center fixed;
+  display: flex;
+  align-items: center;
+
+  h2{
+    color: var( --ion-color-brow);
+    font-size: 16px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+    text-align: center;
+    padding: 3rem ;
+    line-height: 1.5;
+  }
+
+  ion-item{
+    padding: 16px;
+    --background:transparent;
+    --border-bottom: none;
+    margin-bottom: 2rem;
+
+    ion-label{
+      color: var(--ion-color-warning);
+      margin-bottom: 16px;
+    }
+
+    ion-input{
+      color: var(--ion-color-dark);
+    }
+  }
+
+  .btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  ion-button{
+    text-transform: none;
+    width: 150px;
+    color: var(--ion-color-light);
+    --background: var(--ion-color-success);
+    --box-shadow: none;
+    border-radius: 5px;
+    box-shadow: var(--shadow);
+
+  }
+}
+}
+
+
+ion-buttons{
+  justify-content: center;
+}

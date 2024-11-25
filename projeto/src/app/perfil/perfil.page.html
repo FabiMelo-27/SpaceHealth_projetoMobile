@@ -1,4 +1,4 @@
-<ion-header>
+  <ion-header>
   <ion-toolbar>
     <div id="logo">
       <h4>Dados do Perfil</h4>
@@ -7,9 +7,9 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+ <ion-content>
   <div class="perfil-content">
-    <!-- <h2>Dados do Perfil</h2> -->
+    <h2>Dados do Perfil</h2>
     <div *ngIf="!isEditing">
 
       <ion-card *ngFor="let item of perfil">
@@ -26,7 +26,8 @@
           <ion-card-title>Telefone</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          <p>{{item.data.telefone || 'Sem dados'}}</p>
+          <p>{{ item.data.telefone ? '(' + item.data.telefone.substring(0, 2) + ') ' + item.data.telefone.substring(2, 7) + '-' + item.data.telefone.substring(7) : 'Sem dados' }}</p>
+
         </ion-card-content>
       </ion-card>
 
@@ -35,7 +36,8 @@
           <ion-card-title>Data de Nascimento</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          <p>{{item.data.dataNascimento || 'Sem dados'}}</p>
+          <p>{{ item.data.dataNascimento ? (item.data.dataNascimento | date:'dd-MM-yyyy') : 'Sem dados' }}</p>
+
         </ion-card-content>
       </ion-card>
 
@@ -48,11 +50,13 @@
         </ion-card-content>
       </ion-card>
 
+
+
       <ion-card *ngFor="let item of perfil">
         <ion-card-header>
           <ion-card-title>Plano de Saúde</ion-card-title>
         </ion-card-header>
-        <ion-card-content>
+        <ion-card-content class="planoSaude">
           <p>{{item.data.planoSaude || 'Sem dados'}}</p>
           <p>{{item.data.tipoPlano || 'Sem dados'}}</p>
         </ion-card-content>
@@ -60,7 +64,7 @@
 
       <ion-card *ngFor="let item of perfil">
         <ion-card-header>
-          <ion-card-title>Patologias</ion-card-title>
+          <ion-card-title>Doenças pré-existentes</ion-card-title>
         </ion-card-header>
         <ion-card-content>
           <p>{{item.data.novaPatologia || 'Sem dados'}}</p>
@@ -69,7 +73,7 @@
 
       <ion-card *ngFor="let item of perfil">
         <ion-card-header>
-          <ion-card-title>Medicamento</ion-card-title>
+          <ion-card-title>Medicamentos em uso</ion-card-title>
         </ion-card-header>
         <ion-card-content>
           <p>{{item.data.novoMedicamento || 'Sem dados'}}</p>
@@ -82,6 +86,24 @@
         </ion-card-header>
         <ion-card-content>
           <p>{{item.data.alergias || 'Sem dados'}}</p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card *ngFor="let item of perfil">
+        <ion-card-header>
+          <ion-card-title>Tipo Sanguíneo</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>{{item.data.tipoSanguineo || 'Sem dados'}}</p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card *ngFor="let item of perfil">
+        <ion-card-header>
+          <ion-card-title>Cirurgias Realizadas</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>{{item.data.cirurgiasRealizadas || 'Sem dados'}}</p>
         </ion-card-content>
       </ion-card>
 
@@ -101,30 +123,36 @@
         </ion-card-header>
         <ion-card-content class="contatosEmergencia">
           <p>{{item.data.contatoNome || 'Sem dados'}}</p>
-          <p>{{item.data.contatoTelefone || 'Sem dados'}}</p>
+          <p>{{ item.data.contatoTelefone ? '(' + item.data.contatoTelefone.substring(0, 2) + ') ' + item.data.contatoTelefone.substring(2, 7) + '-' + item.data.contatoTelefone.substring(7) : 'Sem dados' }}</p>
+
           <p>{{item.data.contatoParentesco || 'Sem dados'}}</p>
         </ion-card-content>
       </ion-card>
 
 
-      <!-- alterações para perfil com id -->
+
       <div id="editar-dados">
         <ion-button (click)="selecionarPerfil(perfilItem.id, perfilItem.data); isEditing = true"
-          *ngFor="let perfilItem of perfil">
-          Editar Dados
+          *ngFor="let perfilItem of perfil"><ion-icon name="create-outline"></ion-icon>
+          Editar
         </ion-button>
 
-        <ion-button (click)="excluirPerfil(perfilItem.id); isEditing = true" *ngFor="let perfilItem of perfil">
-          Excluir Dados
+        <ion-button (click)="excluirPerfil(perfilItem.id); isEditing = true" *ngFor="let perfilItem of perfil"><ion-icon name="trash-outline"></ion-icon>
+          Excluir
         </ion-button>
+
+        <ion-button *ngIf="perfil.length > 0" (click)="gerarPDF()">
+          <ion-icon name="download-outline"></ion-icon>PDF
+        </ion-button>
+
       </div>
     </div>
   </div>
 
 
   <!-- Formulário de Edição -->
-  <div id="newDados" *ngIf="isEditing">
-    <!-- <h2>Alterar Dados do Perfil</h2> -->
+ <div id="newDados" *ngIf="isEditing">
+
 
     <ion-item>
       <ion-label position="floating">Nome</ion-label>
@@ -157,12 +185,12 @@
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Patologias</ion-label>
+      <ion-label position="floating">Doenças Pré-existentes</ion-label>
       <ion-input [(ngModel)]="novaPatologia" placeholder="Digite suas patologias"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Medicamentos</ion-label>
+      <ion-label position="floating">Medicamentos em uso</ion-label>
       <ion-input [(ngModel)]="novoMedicamento" placeholder="Digite seus medicamentos"></ion-input>
     </ion-item>
 
@@ -170,6 +198,26 @@
       <ion-label position="floating">Alergias</ion-label>
       <ion-input [(ngModel)]="alergias" placeholder="Digite suas alergias"></ion-input>
     </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Tipo Sanguíneo</ion-label>
+      <ion-select [(ngModel)]="tipoSanguineo" placeholder="Selecione o tipo sanguíneo">
+        <ion-select-option value="A +">A +</ion-select-option>
+        <ion-select-option value="A -">A -</ion-select-option>
+        <ion-select-option value="B +">B +</ion-select-option>
+        <ion-select-option value="B -">B -</ion-select-option>
+        <ion-select-option value="AB +">AB +</ion-select-option>
+        <ion-select-option value="AB -">AB - </ion-select-option>
+        <ion-select-option value="O +">O + </ion-select-option>
+        <ion-select-option value="O -">O - </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Cirurgias Realizadas</ion-label>
+      <ion-input [(ngModel)]="cirurgiasRealizadas" placeholder="Outros dados relevantes"></ion-input>
+    </ion-item>
+
 
     <ion-item>
       <ion-label position="floating">Outros Dados</ion-label>
@@ -222,3 +270,4 @@
     </div>
   </ion-toolbar>
 </ion-footer>
+

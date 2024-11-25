@@ -41,6 +41,8 @@ export class PerfilService {
       novaPatologia: perfil.novaPatologia,
       novoMedicamento: perfil.novoMedicamento,
       alergias: perfil.alergias,
+      tipoSanguineo: perfil.tipoSanguineo,
+      cirurgiasRealizadas: perfil.cirurgiasRealizadas,
       outrosDados: perfil.outrosDados,
       contatoNome: perfil.contatoNome,
       contatoTelefone: perfil.contatoTelefone,
@@ -53,3 +55,5 @@ export class PerfilService {
     return this.perfilCollection.doc(id).delete();
   }
 }
+
+

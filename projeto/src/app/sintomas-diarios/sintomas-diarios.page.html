@@ -53,7 +53,7 @@
         <ion-label class="labelList">
           <h2 class="titleList">{{ sintoma.data.sintoma }}</h2>
           <p>Intensidade: {{ sintoma.data.intensidade }}</p>
-          <p>Data: {{ sintoma.data.data }}</p>
+          <p>Data: {{ sintoma.data.data | date:'dd-MM-yyyy -- HH:mm' }}</p>
         </ion-label>
         <ion-button slot="end" (click)="excluirSintoma(i)"><ion-icon name="trash"></ion-icon></ion-button>
       </ion-item>
@@ -89,7 +89,7 @@
       <ion-item *ngFor="let registro of registrosPressao; let i = index">
         <ion-label>
           <h2 class="titleList">Sistólica: {{ registro.data.pressaoSistolica }} | Diastólica: {{ registro.data.pressaoDiastolica }}</h2>
-          <p>Data: {{ registro.data.data }}</p>
+          <p>Data: {{ registro.data.data| date:'dd-MM-yyyy -- HH:mm' }}</p>
           <!-- campo incluido dps -->
           <h3>{{ verificarPressao(registro.data.pressaoSistolica, registro.data.pressaoDiastolica) }}</h3>
         </ion-label>
@@ -122,7 +122,7 @@
       <ion-item *ngFor="let registro of registrosDiabetes; let i = index">
         <ion-label>
           <h2 class="titleList">Nível de Glicose: {{ registro.data.nivelGlicose }}</h2>
-          <p>Data: {{ registro.data.data }}</p>
+          <p>Data: {{ registro.data.data | date:'dd-MM-yyyy -- HH:mm '}}</p>
           <!-- campo incluido dps -->
           <h3>{{ verificarDiabetes(registro.data.nivelGlicose) }}</h3>
         </ion-label>
@@ -131,7 +131,16 @@
     </ion-list>
 
   </div>
+  <!-- Botão flutuante fixo -->
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button (click)="gerarPDF()">
+    <ion-icon name="document-text-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
 </ion-content>
+
+
+
 
 
 <ion-footer>
